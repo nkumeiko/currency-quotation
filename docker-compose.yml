@@ -1,0 +1,15 @@
+version: '3'
+volumes:
+  bundle: {}
+services:
+  app:
+    build: .
+    volumes:
+      - .:/app
+      - bundle:/usr/local/bundle
+    working_dir: /app
+    environment:
+      RAILS_ENV: development
+    command: bundle exec rails s
+    ports:
+      - '3000:3000'
