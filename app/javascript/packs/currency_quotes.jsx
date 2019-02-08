@@ -5,6 +5,7 @@ import moment from 'moment';
 import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip} from 'recharts';
 
 const DEFAULT_CURRENCY = 'usd';
+const REFRESH_TIME = 300000;
 
 class CurrencyQuotes extends React.Component {
   constructor(props) {
@@ -15,8 +16,16 @@ class CurrencyQuotes extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.interval = setInterval(() => this.retrieveCurrencyQuotes(this.state.currency), REFRESH_TIME);
+  }
+
   componentWillMount() {
-    this.retrieveCurrencyQuotes(this.props.currency);
+    this.retrieveCurrencyQuotes(this.state.currency);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   retrieveCurrencyQuotes = (currency) => {
