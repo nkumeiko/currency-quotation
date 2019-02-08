@@ -1,24 +1,17 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Online demo
 
-Things you may want to cover:
+[currency-quotation.herokuapp.com](https://currency-quotation.herokuapp.com/)
 
-* Ruby version
+# To run tests
+```
+docker-compose run -e RAILS_ENV=test app bundle exec rake db:create db:migrate
+docker-compose run -e RAILS_ENV=test app bundle exec rspec
+```
 
-* System dependencies
+# To start server
+```
+docker-compose up
+```
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
