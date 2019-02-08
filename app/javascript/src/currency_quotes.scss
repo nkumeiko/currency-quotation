@@ -1,0 +1,29 @@
+.currency-quotes {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.currency-quotes__title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #1d075b;
+}
+
+.currency-quotes__hint {
+  color: #979491;
+  font-size: 1rem;
+  font-weight: 300;
+  margin-bottom: 5px;
+}
+
+.currency-quotes__button {
+  cursor: pointer;
+}
+
+.currency-quotes__button:disabled {
+  cursor: default;
+}
+
+.currency-quotes__graph {
+  margin: 20px auto;
+}

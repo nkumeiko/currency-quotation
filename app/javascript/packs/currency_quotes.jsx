@@ -11,7 +11,7 @@ class CurrencyQuotes extends React.Component {
     super(props);
     this.state = {
       currency_quotes: null,
-      currency: '',
+      currency: this.props.currency,
     };
   }
 
@@ -20,9 +20,11 @@ class CurrencyQuotes extends React.Component {
   }
 
   retrieveCurrencyQuotes = (currency) => {
+    this.setState({ currency: currency });
+
     Axios.get(`currency_quotes/${currency}`)
       .then((response) => {
-        this.setState({ currency_quotes: response.data, currency: currency });
+        this.setState({ currency_quotes: response.data });
       })
       .catch((error) => {
         alert(error);
@@ -43,11 +45,29 @@ class CurrencyQuotes extends React.Component {
     }
 
     return (
-      <div>
-        <div>BRL quotation versus {this.state.currency.toUpperCase()}</div>
-
+      <div className="currency-quotes">
+        <div className="currency-quotes__title">BRL quotation versus {this.state.currency.toUpperCase()}</div>
+        <div className="currency-quotes__hint">click to switch to:</div>
+        <button
+          className="currency-quotes__button"
+          onClick={() => { this.switchCurrency('usd'); }}
+          disabled={this.state.currency == 'usd'}>
+          USD
+        </button>
+        <button
+          className="currency-quotes__button"
+          onClick={() => { this.switchCurrency('eur'); }}
+          disabled={this.state.currency == 'eur'}>
+          EUR
+        </button>
+        <button
+          className="currency-quotes__button"
+          onClick={() => { this.switchCurrency('aud'); }}
+          disabled={this.state.currency == 'aud'}>
+          AUD
+        </button>
         <AreaChart width={800} height={400} data={data}
-            margin={{top: 10, right: 30, left: 0, bottom: 0}}>
+            margin={{top: 10, right: 30, left: 0, bottom: 0}} className="currency-quotes__graph">
           <CartesianGrid strokeDasharray="3 3"/>
           <XAxis
             dataKey="date"
@@ -59,20 +79,16 @@ class CurrencyQuotes extends React.Component {
             dataKey='value'
             domain={['auto', 'auto']}
             name='Quote' />
-          <Tooltip/>
+          <Tooltip labelFormatter={(value) => moment(value).format('HH:mm')}/>
           <Area type='monotone' dataKey='value' stroke='#8884d8' fill='#8884d8' />
         </AreaChart>
-
-        <button onClick={() => { this.switchCurrency('usd'); }}>USD</button>
-        <button onClick={() => { this.switchCurrency('eur'); }}>EUR</button>
-        <button onClick={() => { this.switchCurrency('aud'); }}>AUD</button>
       </div>
     );
   }
 }
 
 CurrencyQuotes.propTypes = {
-  currency: PropTypes.string
+  currency: PropTypes.string,
 };
 
 CurrencyQuotes.defaultProps = {
