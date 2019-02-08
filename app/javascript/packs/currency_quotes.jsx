@@ -73,13 +73,13 @@ class CurrencyQuotes extends React.Component {
             dataKey="date"
             domain={['auto', 'auto']}
             name='Time'
-            tickFormatter={(unixTime) => moment(unixTime).format('HH:mm')}
+            tickFormatter={(unixTime) => moment(unixTime).utc().format('HH:mm')}
             type='number'/>
           <YAxis
             dataKey='value'
             domain={['auto', 'auto']}
             name='Quote' />
-          <Tooltip labelFormatter={(value) => moment(value).format('HH:mm')}/>
+          <Tooltip labelFormatter={(value) => moment(value).utc().format('HH:mm')}/>
           <Area type='monotone' dataKey='value' stroke='#8884d8' fill='#8884d8' />
         </AreaChart>
       </div>
