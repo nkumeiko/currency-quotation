@@ -3,6 +3,7 @@ volumes:
   bundle: {}
   node_modules: {}
   tmp: {}
+  postgres_data: {}
 services:
   app:
     build: .
@@ -17,3 +18,12 @@ services:
     command: bundle exec rails s -b0
     ports:
       - '3000:3000'
+    depends_on:
+      - database
+
+  database:
+    image: postgres:10
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=currency_quotation_development
