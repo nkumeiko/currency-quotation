@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'currency_quotes#index'
+  root to: 'application#show'
+
+  get 'currency_quotes/:currency', to: 'currency_quotes#show'
 end

@@ -1,4 +1,11 @@
 class CurrencyQuotesController < ApplicationController
-  def index
+  def show
+    render json: CurrencyQuote.by_currency(currency_params[:currency])
+  end
+
+  private
+
+  def currency_params
+    params.permit(:currency)
   end
 end

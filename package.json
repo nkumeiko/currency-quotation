@@ -2,10 +2,21 @@
   "name": "currency-quotation",
   "private": true,
   "dependencies": {
-    "billboard.js": "^1.7.1"
+    "@rails/webpacker": "3.5",
+    "babel-preset-react": "^6.24.1",
+    "prop-types": "^15.6.2",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "react-billboardjs": "^1.4.3",
+    "axios": "^0.18.0",
+    "moment": "^2.24.0",
+    "recharts": "^1.4.2"
   },
   "version": "1.0.0",
   "repository": "git@github.com:nkumeiko/currency-quotation.git",
   "author": "Nataliia Kumeiko",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "webpack-dev-server": ">=3.1.11"
+  }
 }
